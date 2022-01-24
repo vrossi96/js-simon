@@ -1,6 +1,6 @@
 /*
 |Generare 5 numeri casuali e mostrarli in un alert all'utente.
-Dall'ok  parte un timer di 30 secondi. (ricordate che l'alert blocca il flusso. il timer partirà a contare dopo che avete schiacciato ok.)
+|Dall'ok  parte un timer di 30 secondi. (ricordate che l'alert blocca il flusso. il timer partirà a contare dopo che avete schiacciato ok.)
 Dopo 30 secondi l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite prompt().
 Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri  sono stati indovinati dall'utente.
 Bonus:
@@ -22,10 +22,31 @@ const generateRandomNumbers = (array) => {
    }
 };
 
+const askNumbers = (newArray, arrayToCheck, matchingArray) => {
+   for (let i = 0; i < arrayToCheck.length; i++) {
+      const number = prompt(`Inserisci il ${i + 1} numero: `);
+      newArray.push(parseInt(number));
+      if (arrayToCheck.includes(number)) {
+         matchingArray.push(number);
+      }
+   }
+};
+
 //# Variabili
 const fiveRandomNumbers = [];
+const userNumbers = [];
+const matchingNumbers = [];
 
 //# Procedimento
+// Genero array con 5 numeri
 generateRandomNumbers(fiveRandomNumbers);
 console.log(fiveRandomNumbers);
+// Mostro con un alert i numeri
 alert(`I numeri sono: ${fiveRandomNumbers}`);
+
+// Dopo tot secondi vengono chiesti all'utente 5 numeri
+setTimeout(function () {
+   askNumbers(userNumbers, fiveRandomNumbers, matchingNumbers);
+   console.table(userNumbers);
+   console.table(matchingNumbers);
+}, 5000);
