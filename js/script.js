@@ -7,6 +7,7 @@ Bonus:
 controllare che i numeri casuali siano diversi tra loro
 controllare che l'utente non inserisca 2 volte lo stesso numero
 */
+
 //# Funzioni
 const getRandomNumber = (min, max) => {
    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -24,8 +25,8 @@ const generateRandomNumbers = (array) => {
 
 const askNumbers = (newArray, arrayToCheck, matchingArray) => {
    for (let i = 0; i < arrayToCheck.length; i++) {
-      const number = prompt(`Inserisci il ${i + 1} numero: `);
-      newArray.push(parseInt(number));
+      const number = parseInt(prompt(`Inserisci il ${i + 1} numero: `));
+      newArray.push(number);
       if (arrayToCheck.includes(number)) {
          matchingArray.push(number);
       }
@@ -47,6 +48,6 @@ alert(`I numeri sono: ${fiveRandomNumbers}`);
 // Dopo tot secondi vengono chiesti all'utente 5 numeri
 setTimeout(function () {
    askNumbers(userNumbers, fiveRandomNumbers, matchingNumbers);
-   console.table(userNumbers);
-   console.table(matchingNumbers);
+   console.log(userNumbers);
+   console.log(matchingNumbers);
 }, 5000);
