@@ -5,7 +5,7 @@
 |Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri  sono stati indovinati dall'utente.
 Bonus:
 |controllare che i numeri casuali siano diversi tra loro
-controllare che l'utente non inserisca 2 volte lo stesso numero
+|controllare che l'utente non inserisca 2 volte lo stesso numero
 */
 
 //# Funzioni
@@ -24,11 +24,18 @@ const generateRandomNumbers = (array) => {
 };
 
 const askNumbers = (newArray, arrayToCheck, matchingArray) => {
-   for (let i = 0; i < arrayToCheck.length; i++) {
+   let i = 0;
+   while (newArray.length < arrayToCheck.length) {
       const number = parseInt(prompt(`Inserisci il ${i + 1} numero: `));
-      newArray.push(number);
-      if (arrayToCheck.includes(number)) {
-         matchingArray.push(number);
+      if (!newArray.includes(number)) {
+         if (arrayToCheck.includes(number)) {
+            newArray.push(number);
+            matchingArray.push(number);
+            i++;
+         } else {
+            newArray.push(number);
+            i++;
+         }
       }
    }
 };
